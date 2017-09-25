@@ -7,61 +7,125 @@
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
   </head>
-  
-<body>
-
-<header>
-<h5>TEXT</h5>
-</header>
 
 
-<section="group">
-      <script>
+<div class="site">
 
-      $(document).ready(function(){
-        var $body = $('body');
-        $body.html('');
+  <div class="sidebar">
+<!--         <span class="myButton" id="myButton" style="background: linear-gradient(rgb(255, 196, 119) 5%, rgb(251, 158, 37) 100%) rgb(255, 196, 119); border-radius: 13px; border: 2px solid rgb(238, 180, 79); display: inline-block; cursor: pointer; color: rgb(255, 255, 255); font-family: Arial; font-size: 15px; font-weight: bold; padding: 11px 31px; text-decoration: none; margin-bottom: 20px;">refresh!</span>
 
-        var index = streams.home.length - 1;
-        while(index >= 0){
-          var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          var $tweetTime = $('<div></div>');
+        <div style="font-size: 0.6em;">Nuno The Awesome</div> 
+        <div style="font-size: 0.6em;">Momster</div>
+        <div style="font-size: 0.6em;">shawndrost</div>
+        <div style="font-size: 0.6em;">sharksforcheap</div>
+        <div style="font-size: 0.6em;">mracus</div>
+        <div style="font-size: 0.6em;">douglascalhoun</div>≠
+ -->
 
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
 
-          $tweetTime.text('Tweeted at: ' + tweet.created_at.toLocaleString());
-             $tweetTime.css({'font-size': '0.75em', 'font-style': 'italic', 'padding-top': '0px'});
+  </div>
 
-          $tweet.appendTo($body);
-          $tweetTime.appendTo($body);
+  <div class="content">
+      <section class="main">
 
-          index -= 1;
+          <script>
 
-        }
+          $(document).ready(function(){
 
-      });
 
-    </script>
+            var $mainBody = $('.main');
+            $mainBody.html('');
 
-<aside>
-      <script>
+            var $refresh = $('<span class="myButton" id="myButton" style="background: linear-gradient(rgb(255, 196, 119) 5%, rgb(251, 158, 37) 100%) rgb(255, 196, 119); border-radius: 13px; border: 2px solid rgb(238, 180, 79); display: inline-block; cursor: pointer; color: rgb(255, 255, 255); font-family: Arial; font-size: 15px; font-weight: bold; padding: 11px 31px; text-decoration: none; margin-bottom: 20px;">refresh!</span>');
 
-<p>CRAZZY SIDEBAR</p>
+            $refresh.appendTo($mainBody);
 
-    </script>
-  </aside>
+            var index = streams.home.length - 1;
+            while(index >= 0){
+              var tweet = streams.home[index];
+              var $tweet = $('<div></div>');
+              var $tweetTime = $('<div></div>');
+              var $tweetUser = $('<div></div>');
+              var $tweetRelativeTime = $('<div></div>');
+              var timeDff = Date.now() - tweet.created_at;
+
+              $tweetUser.text('@' + tweet.user);
+              $tweetUser.css({'font-size': '1.5em', 'font-style': 'bolder', 'padding-top': '20px', 'padding-bottom': '0px'});
+
+              $tweet.text(tweet.message);
+              $tweet.css({'font-size': '2em', 'font-style': 'bolder', 'padding-top': '0px', 'padding-bottom': '0px'});
+
+              $tweetTime.text('Tweeted at: ' + tweet.created_at.toLocaleString() + ' ' + timeDff.toLocaleString() + ' seconds ago');
+              $tweetTime.css({'font-style': 'italic', 'padding-top': '10px'});
+
+              $tweetRelativeTime.text('Tweeted: ' + timeDff.toLocaleString() + ' seconds ago');
+              $tweetRelativeTime.css({'font-size': '0.25em','font-style': 'italic', 'padding-top': '0px'});
+
+              $tweetUser.appendTo($mainBody);
+              $tweet.appendTo($mainBody);
+              $tweetTime.appendTo($mainBody);
+        
+              index -= 1;
+
+            }
+
+
+          });
+
+        </script>
+
+    </section>
+        </div>
+
+ <div class="sidebar2">
+    <p>DO YOU SEE ME?</p>
+
+      <section class="sidebar2">
+
+          <script type="text/javascript">
+
+          $(document).ready(function(user){
+            var user = 'mracus';
+
+            var $sideBody = $('.sidebar2');
+            $sideBody.html('');
+//            var user = 'mracus';
+            var tweets = userTweets(user);
+            var index = tweets.length - 1;
+            while (index >= 0){
+              var tweet = tweets[index];
+              var $tweet = $('<div></div>');
+              var $tweetTime = $('<div></div>');
+              var $tweetRelativeTime = $('<div></div>');
+              var timeDff = Date.now() - tweet.created_at;
+
+              $tweet.text('@' + tweet.user + ': ' + tweet.message);
+
+              $tweetTime.text('Tweeted ' + timeDff.toLocaleString() + ' seconds ago');
+              $tweetTime.css({'font-size': '0.75em', 'font-style': 'italic', 'padding-top': '0px'});
+
+              $tweet.text('@' + tweet.user + ': ' + tweet.message);
+
+              $tweet.appendTo($sideBody);
+
+              index-= 1;
+
+            }
+
+          });
+
+        </script>
+
+    </section>
+        </div>
+
+
+</div>
+
+
 
 </section>
 
-
-
-<footer>...</footer>
-
-
-
-
-</body>
 </html>
 
 

@@ -4,6 +4,7 @@
  */
 
 // set up data structures
+
 window.streams = {};
 streams.home = [];
 streams.users = {};
@@ -44,8 +45,8 @@ var randomMessage = function(){
 var generateRandomTweet = function(){
   var tweet = {};
   tweet.user = randomElement(users);
-  tweet.message = randomMessage();
   tweet.created_at = new Date();
+  tweet.message = randomMessage();
   addTweet(tweet);
 };
 
@@ -55,9 +56,14 @@ for(var i = 0; i < 20; i++){
 
 var scheduleNextTweet = function(){
   generateRandomTweet();
-  setTimeout(scheduleNextTweet, Math.random() * 1500);
+  setTimeout(scheduleNextTweet, Math.random() * 150);
 };
 scheduleNextTweet();
+
+
+var userTweets = function(user) {
+  return streams.users[user].splice(-10);
+}
 
 // utility function for letting students add "write a tweet" functionality
 // (note: not used by the rest of this file.)
