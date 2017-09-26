@@ -10,119 +10,61 @@
 
 
 <div class="site">
+  <div class="header"><section class="header"><img src="twittler.png"></section></div>
 
-  <div class="sidebar">
-<!--         <span class="myButton" id="myButton" style="background: linear-gradient(rgb(255, 196, 119) 5%, rgb(251, 158, 37) 100%) rgb(255, 196, 119); border-radius: 13px; border: 2px solid rgb(238, 180, 79); display: inline-block; cursor: pointer; color: rgb(255, 255, 255); font-family: Arial; font-size: 15px; font-weight: bold; padding: 11px 31px; text-decoration: none; margin-bottom: 20px;">refresh!</span>
+  <div class="content" style="background-color: #599FBF">
+    <section class="main">
+      <script>
+        $(document).ready(function(){
 
-        <div style="font-size: 0.6em;">Nuno The Awesome</div> 
-        <div style="font-size: 0.6em;">Momster</div>
-        <div style="font-size: 0.6em;">shawndrost</div>
-        <div style="font-size: 0.6em;">sharksforcheap</div>
-        <div style="font-size: 0.6em;">mracus</div>
-        <div style="font-size: 0.6em;">douglascalhoun</div>≠
- -->
+        fetchTweets();
 
+        });
 
+      </script>
+    </section>
   </div>
 
-  <div class="content">
-      <section class="main">
+  <div class="sidebar-left">
+    <section class="sidebar-left">
+      <script type="text/javascript">
+        var $sidebarLeft = $('.sidebar-left');
+        $sidebarLeft.html('').css({'background-color': '#C7DCE8'});
 
-          <script>
+      $(document).ready(function(){
 
-          $(document).ready(function(){
+        var $headline = $('<p>Show me some user tweets!</p>');
+        $headline.appendTo($sidebarLeft);
 
+        var $userList = $('<ul style="color: #313B40; font-weight: bold"><li>mracus</li><li>nunotheawesome</li><li>trollsontheloose</li><li>momster</li><li>douglascalhoun</li><li>sharksforcheap</li><li>shawndrost</li></ul>');
 
-            var $mainBody = $('.main');
-            $mainBody.html('');
+        $userList.appendTo($sidebarLeft);
 
-            var $refresh = $('<span class="myButton" id="myButton" style="background: linear-gradient(rgb(255, 196, 119) 5%, rgb(251, 158, 37) 100%) rgb(255, 196, 119); border-radius: 13px; border: 2px solid rgb(238, 180, 79); display: inline-block; cursor: pointer; color: rgb(255, 255, 255); font-family: Arial; font-size: 15px; font-weight: bold; padding: 11px 31px; text-decoration: none; margin-bottom: 20px;">refresh!</span>');
+        $('li').click(function(){
+          $(this).closest('.sidebar-left').append(fetchUserTweets($(this).text()));
+        });
 
-            $refresh.appendTo($mainBody);
+      });
+      
+      </script>
+    </section>
+  </div>
 
-            var index = streams.home.length - 1;
-            while(index >= 0){
-              var tweet = streams.home[index];
-              var $tweet = $('<div></div>');
-              var $tweetTime = $('<div></div>');
-              var $tweetUser = $('<div></div>');
-              var $tweetRelativeTime = $('<div></div>');
-              var timeDff = Date.now() - tweet.created_at;
+   <div class="sidebar-right">
+      <section class="sidebar-right">
+        <script type="text/javascript">
+          var $sidebarRight = $('.sidebar-right');
+          $sidebarRight.html('').css({'background-color': '#9BBBCA'});
 
-              $tweetUser.text('@' + tweet.user);
-              $tweetUser.css({'font-size': '1.5em', 'font-style': 'bolder', 'padding-top': '20px', 'padding-bottom': '0px'});
+        $(document).ready(function(){
 
-              $tweet.text(tweet.message);
-              $tweet.css({'font-size': '2em', 'font-style': 'bolder', 'padding-top': '0px', 'padding-bottom': '0px'});
-
-              $tweetTime.text('Tweeted at: ' + tweet.created_at.toLocaleString() + ' ' + timeDff.toLocaleString() + ' seconds ago');
-              $tweetTime.css({'font-style': 'italic', 'padding-top': '10px'});
-
-              $tweetRelativeTime.text('Tweeted: ' + timeDff.toLocaleString() + ' seconds ago');
-              $tweetRelativeTime.css({'font-size': '0.25em','font-style': 'italic', 'padding-top': '0px'});
-
-              $tweetUser.appendTo($mainBody);
-              $tweet.appendTo($mainBody);
-              $tweetTime.appendTo($mainBody);
+        });
         
-              index -= 1;
-
-            }
-
-
-          });
-
         </script>
+      </section>
+    </div>
 
-    </section>
-        </div>
-
- <div class="sidebar2">
-    <p>DO YOU SEE ME?</p>
-
-      <section class="sidebar2">
-
-          <script type="text/javascript">
-
-          $(document).ready(function(user){
-            var user = 'mracus';
-
-            var $sideBody = $('.sidebar2');
-            $sideBody.html('');
-//            var user = 'mracus';
-            var tweets = userTweets(user);
-            var index = tweets.length - 1;
-            while (index >= 0){
-              var tweet = tweets[index];
-              var $tweet = $('<div></div>');
-              var $tweetTime = $('<div></div>');
-              var $tweetRelativeTime = $('<div></div>');
-              var timeDff = Date.now() - tweet.created_at;
-
-              $tweet.text('@' + tweet.user + ': ' + tweet.message);
-
-              $tweetTime.text('Tweeted ' + timeDff.toLocaleString() + ' seconds ago');
-              $tweetTime.css({'font-size': '0.75em', 'font-style': 'italic', 'padding-top': '0px'});
-
-              $tweet.text('@' + tweet.user + ': ' + tweet.message);
-
-              $tweet.appendTo($sideBody);
-
-              index-= 1;
-
-            }
-
-          });
-
-        </script>
-
-    </section>
-        </div>
-
-
-</div>
-
-
+  </div>
 
 </section>
 
